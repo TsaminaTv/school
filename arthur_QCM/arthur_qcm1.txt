@@ -1,0 +1,29 @@
+Question: Quelle est l'extension d'un fichier Python ?
+Answers:
+1) .rat
+2) .py
+3) .python
+4) .bat
+Correct Answer: 2
+User Answer: 2
+
+Question: Comment définit-on une fonction ?
+Answers:
+1) function
+2) func
+3) def
+4) class
+Correct Answer: 3
+User Answer: 3
+
+Question: Quelle est la méthode utilisée pour ajouter un élément à une liste en Python ?
+Answers:
+1) append()
+2) extend()
+3) add()
+4) insert()
+Correct Answer: 1
+User Answer: 1
+
+Student grade: 3/4
+--------------------------------------------------

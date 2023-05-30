@@ -1,3 +1,4 @@
 PROF|prof:prof
 ELEVE|eleve:eleve
 ELEVE|asd:asd
+ELEVE|arthur:arthur

@@ -2,11 +2,6 @@ import os
 import time
 import threading
 
-# TODO: ----------------------------------------------------------------------------------------------------
-                # --------------------------💀 SHIT DOES NOT WORK BRUH 💀--------------------------         
-                #                              ADD TIMER USING THREADING                            
-                # --------------------------💀 SHIT DOES NOT WORK BRUH 💀--------------------------
-# TODO: ----------------------------------------------------------------------------------------------------
 
 class Style:
     WHITE = '\033[97m'
@@ -44,7 +39,7 @@ class GestionExamens:
 
     def Quit(self):
         '''
-        Quit the application
+        Permet de quitter l'application
         '''
         print(Style.CLEAR)
         print(Style.CLEAR + goodbyeColor + "Au revoir!" + defaultColor)
@@ -55,18 +50,18 @@ class GestionExamens:
         global myTimer
         myTimer = timerDuration
 
-        # Start the timer
+        # le time commence
         for i in range(myTimer):
             myTimer -= 1
             time.sleep(1)
 
-        print(errorColor + "\nTime's up! Enter your last answer (if you answer is already written just press enter): " + defaultColor)
+        print(errorColor + "\nTemps écoulé !  Entrez votre dernière réponse (si la réponse est déjà écrite, appuyez sur entrer): " + defaultColor)
 
     
     def CountDown(self, duration):
-        print(errorColor + f"You have {duration} seconds to answer each question" + defaultColor)
+        print(errorColor + f"Vous avez {duration} seconds pour répondre à chaque question !" + defaultColor)
 
-        # Print a countdown
+        # On affiche un décompte
         for i in range(3, 0, -1):
             print(i)
             time.sleep(1)
@@ -74,26 +69,26 @@ class GestionExamens:
 
     def ActionForm(self, actions):
         '''
-        Print a menu with the given actions and execute the corresponding function
+            Afficher un menu avec les actions à effectuer
         '''
         while True:
             for key in actions:
-                # Print the action and the corresponding key
+                # Afficher l'action 
                 print(f"{key}: {actions[key][0]}")
-            # Ask for the user's choice
+            # Demander le choix de l'utilisateur
             choice = input(backgroundColor + f"Entrez votre choix ({', '.join(actions.keys())}) : " + defaultColor).lower()
-            # Check if the choice is in the actions
+            # On vérifie que le choix de l'utilisateur est un choix possible
             if choice in actions:
-                # Execute the corresponding function
+                # Exécution du choix 
                 actions[choice][1]()
                 return choice
             else:
-                print(errorColor + "Invalid choice" + backgroundColor)
+                print(errorColor + "Choix invalide" + backgroundColor)
 
 
     def mainMenu(self):
         '''
-        Print the main menu
+        Affichage du menu principal 
         '''
         print(Style.BOLD + appHeaderColor + "APPLICATION DE GESTION DE QCM" + Style.END)
         print(backgroundColor + "*****************************")
@@ -109,102 +104,102 @@ class GestionExamens:
 
     def checkAccount(self, user):
         '''
-        Check if the user has an account or not
-        Also check if the user is a teacher or a student and redirect to the corresponding mode
+        Vérification si l'utilisateur a déjà un compte
+        Vérification si l'utilisateur est étudiant ou prof et afficher le bon menu
         '''
-        answer = input(backgroundColor + "Do you have an account? (y/n) : " + defaultColor)
+        answer = input(backgroundColor + "Avez vous un compte? (oui/non) : " + defaultColor)
         while True:
-            # Check if the user has an account
-            if answer == "y":
-                # If yes, check if the user is a teacher or a student
+            # Verification si l'utilisateur a un compte
+            if answer == "oui":
+                # Si l'utilisateur a un compte, verifier si c'est un prof ou un élève
                 if user == "PROF" and self.login() == "PROF":
                     self.teacherMode()
                 elif user == "ELEVE" and self.login() == "ELEVE":
                     self.studentMode()
                 else:
-                    # If the user is not a teacher or a student, print an error message and redirect to the main menu
-                    print(Style.CLEAR + Style.PURPLE + "You dont have permission to access this mode\n" + backgroundColor)
+                    #Si l'utilisateur n'est pas un prof ou un élève, afficher un message d'erreur et rédirection au menu principal
+                    print(Style.CLEAR + Style.PURPLE + "Vous n'avez pas la permission\n" + backgroundColor)
                     time.sleep(1)
                     print(Style.CLEAR, end="")
                     self.mainMenu()
                 break
             elif answer == "n":
-                # If no, register a new account
+                #Si l'utilisateur n'a pas de compte, en créer un 
                 self.register(user, user)
                 break
             else:
-                answer = input(errorColor + "Please enter a valid answer (y/n) : " + defaultColor)
+                answer = input(errorColor + "Veuillez entrez une réponse valide (oui/non) : " + defaultColor)
 
 
     def register(self, whoRegister, whoCreatedAccount):
         '''
-        Register a new account
+        Fonction de création de compte
         '''
         while True:
-            # Ask for username and password
+            # Demander un nom d'utilisateur et un mot de passe
             username = input(backgroundColor + "Username: " + defaultColor).lower()
-            password = input(backgroundColor + "Password: " + defaultColor).lower()
-            confirmPassword = input(backgroundColor + "Confirm Password: " + defaultColor).lower()
-            # Check if the username and password are at least 2 characters and if the passwords match
+            password = input(backgroundColor + "mot de passe: " + defaultColor).lower()
+            confirmPassword = input(backgroundColor + "Confirmez votre MDP: " + defaultColor).lower()
+            #Vérification si le MDP et le nom d'utilisateur font au moins 2 caractères et si les MDP correspondent
             if len(username) < 2 or len(password) < 2 or password != confirmPassword:
-                print(errorColor + "Username and password should be at least 2 characters and the passwords should match" + backgroundColor)
+                print(errorColor + "Le nom d'utilisateur et le MDP doivent faire au moins 2 caractères et les MDP doivent correspondrent" + backgroundColor)
             else:
-                # Assign the username and password to the class variables
+                #On défini le nom d'utilisateur et le mdp sur des variable de class
                 self.username = username
                 self.password = password
                 break
         try:
-            # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
-                # Read all the accounts
+            # ouvrir le fichier de compte
+            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+                #On lit les comptes
                 accounts = file.readlines()
                 for account in accounts:
-                    # Split the account into role and username:password
+                    #Séparer le compte du MDP 
                     account = account.strip().split("|")
-                    # Split the username:password into username and password
+                    #Séparer le compte du MDP
                     existingUsername = account[1].split(":")[0]
-                    # Check if the username already exists
+                    #Vérification si le nom d'utilisateur existe déjà
                     if existingUsername == self.username:
-                        print(errorColor + "Username already exists" + backgroundColor)
+                        print(errorColor + "Le nom d'utilisateur existe déjà" + backgroundColor)
                         self.mainMenu()
 
-            # If the username doesn't exist, save the new account
-            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            #Si le nom d'utilisateur n'existe pas, sauvegarder le compte
+            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
                 file.write(f"{whoRegister}|{username}:{password}\n")
 
-            # Print a success message and clear the screen
+            #Imprimer un message de succès et nettoyer l'écran
             print(correctColor + "Register successful!" + backgroundColor)
             time.sleep(1.5)
             print(Style.CLEAR, end="")
 
-            # If the account was created by a teacher, redirect to teacher mode
+            #Si le compte est un compte prof, ouvrir le mode prof
             if whoCreatedAccount == "PROF":
                 self.teacherMode()
-            # If the account was created by a student, redirect to student mode
+            #Si le compte est un compte élève, ouvrir le mode élève
             else:
                 self.mainMenu()
         except FileNotFoundError:
-            print("No accounts file found")
+            print("Compte introuvable")
 
 
     def login(self):
         '''
-        Login to an existing account
+        Connexion a un compte existant
         '''
-        # Ask for username and password
+        #Demande du nom d'utilisateur et MDP
         username = input(backgroundColor + "Username: " + defaultColor).lower()
         password = input(backgroundColor + "Password: " + defaultColor).lower()
-        # Assign the username and password to the class variables
+        #définition du nom et du MDP en variable
         self.username = username
         self.password = password
 
         try:
-            # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
-                # Read all the accounts
+            #Ouverture du fichier de compte
+            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+                #On lit tous les comptes
                 accounts = file.readlines()
         except FileNotFoundError:
-            print(backgroundColor + "No accounts file found")
+            print(backgroundColor + "Compte introuvable")
 
         for account in accounts:
             # Split the account into role and username:password
@@ -267,9 +262,9 @@ class GestionExamens:
         try:
             # Create the quiz file if it doesn't exist
             if not os.path.exists(f"QCM\\{quizName}.txt"):
-                open(f"QCM\\{quizName}.txt", "w").close()
+                open(f"mini-projet-3\\QCM\\{quizName}.txt", "w").close()
             # Open the quiz file and write the questions and answers that were entered before
-            with open(file=f"QCM\\{quizName}.txt", mode="a", encoding='utf-8') as file:
+            with open(file=f"mini-projet-3\\QCM\\{quizName}.txt", mode="a", encoding='utf-8') as file:
                 for i in range(len(quizQuestions)):
                     file.write(f"{quizQuestions[i]}\n")
             # Print a success message and clear the screen clear the screen and redirect to teacher mode
@@ -357,6 +352,10 @@ class GestionExamens:
                 print(errorColor + "Invalid choice" + backgroundColor)
 
         # ------ SHOW STUDENT RESULTS ------
+        # Clear the screen
+        print(Style.CLEAR, end='')
+        
+        # Open the student file and print the results
         with open(f"{selectedStudentFolder}\\{selectedStudentFile}", "r", encoding='utf-8') as file:
             print(file.read())
 
@@ -409,7 +408,7 @@ class GestionExamens:
 
         # Check if the user has already done the quiz, if yes, remove it from their quizzes list
         count = 1
-        for i, file in enumerate(os.listdir("QCM")):
+        for i, file in enumerate(os.listdir("mini-projet-3\\QCM")):
             if f"{self.username}_{file}" not in os.listdir(self.folderName):
                 print(f"{count}) {file}")
                 qcmFiles[str(count)] = file.split(".")[0]
@@ -438,7 +437,7 @@ class GestionExamens:
 
         # ------ READ QUIZ FILE ------
         # Open selected quiz
-        with open(f'QCM\{selectedQCM}.txt', "r", encoding='utf-8') as file:
+        with open(f'mini-projet-3\\QCM\\{selectedQCM}.txt', "r", encoding='utf-8') as file:
             # Read all lines
             lines = file.readlines()
 
@@ -537,7 +536,6 @@ class GestionExamens:
             print(errorColor + f"SOOO BAAAAAD HAHAHA. You got {grade}/{len(questions)}" + Style.END)
         time.sleep(2)
         self.studentMode()
-
 
 def main():
     print(Style.CLEAR, end='') # Clear the screen

@@ -1,0 +1,38 @@
+Question: Quelle est la méthode utilisée pour fermer un fichier en Python ?
+Answers:
+1) close()
+2) shutdown()
+3) end()
+4) exit()
+Correct Answer: 1
+User Answer: 4
+
+Question: Comment effectue-t-on une boucle "while" en Python ?
+Answers:
+1) while loop:
+2) while (condition):
+3) for i in range():
+4) do while loop:
+Correct Answer: 2
+User Answer: 2
+
+Question: Quelle est la fonction utilisée pour convertir un nombre en chaîne de caractères en Python ?
+Answers:
+1) str()
+2) convert()
+3) tostring()
+4) stringify()
+Correct Answer: 1
+User Answer: 1
+
+Question: Comment convertit-on un nombre en entier en Python ?
+Answers:
+1) int_part()
+2) round()
+3) integer()
+4) int()
+Correct Answer: 4
+User Answer: 3
+
+Student grade: 2/4
+--------------------------------------------------
