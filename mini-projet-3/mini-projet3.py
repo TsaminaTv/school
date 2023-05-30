@@ -3,6 +3,7 @@ import time
 import threading
 
 
+
 class Style:
     WHITE = '\033[97m'
     PURPLE = '\033[95m'
@@ -23,7 +24,7 @@ class Style:
 defaultColor = Style.WHITE
 appHeaderColor = Style.DARKCYAN
 backgroundColor = Style.CYAN
-headerColor = Style.RED
+headerColor = Style.YELLOW
 questionColor = Style.BLUE
 correctColor = Style.GREEN
 errorColor = Style.RED
@@ -50,7 +51,7 @@ class GestionExamens:
         global myTimer
         myTimer = timerDuration
 
-        # le time commence
+        # le timer commence
         for i in range(myTimer):
             myTimer -= 1
             time.sleep(1)
@@ -150,7 +151,7 @@ class GestionExamens:
                 break
         try:
             # ouvrir le fichier de compte
-            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
                 #On lit les comptes
                 accounts = file.readlines()
                 for account in accounts:
@@ -164,7 +165,7 @@ class GestionExamens:
                         self.mainMenu()
 
             #Si le nom d'utilisateur n'existe pas, sauvegarder le compte
-            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
                 file.write(f"{whoRegister}|{username}:{password}\n")
 
             #Imprimer un message de succès et nettoyer l'écran
@@ -195,7 +196,7 @@ class GestionExamens:
 
         try:
             #Ouverture du fichier de compte
-            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
                 #On lit tous les comptes
                 accounts = file.readlines()
         except FileNotFoundError:
@@ -262,9 +263,9 @@ class GestionExamens:
         try:
             # Create the quiz file if it doesn't exist
             if not os.path.exists(f"QCM\\{quizName}.txt"):
-                open(f"mini-projet-3\\QCM\\{quizName}.txt", "w").close()
+                open(f"QCM\\{quizName}.txt", "w").close()
             # Open the quiz file and write the questions and answers that were entered before
-            with open(file=f"mini-projet-3\\QCM\\{quizName}.txt", mode="a", encoding='utf-8') as file:
+            with open(file=f"QCM\\{quizName}.txt", mode="a", encoding='utf-8') as file:
                 for i in range(len(quizQuestions)):
                     file.write(f"{quizQuestions[i]}\n")
             # Print a success message and clear the screen clear the screen and redirect to teacher mode
@@ -408,7 +409,7 @@ class GestionExamens:
 
         # Check if the user has already done the quiz, if yes, remove it from their quizzes list
         count = 1
-        for i, file in enumerate(os.listdir("mini-projet-3\\QCM")):
+        for i, file in enumerate(os.listdir("QCM")):
             if f"{self.username}_{file}" not in os.listdir(self.folderName):
                 print(f"{count}) {file}")
                 qcmFiles[str(count)] = file.split(".")[0]
@@ -437,7 +438,7 @@ class GestionExamens:
 
         # ------ READ QUIZ FILE ------
         # Open selected quiz
-        with open(f'mini-projet-3\\QCM\\{selectedQCM}.txt', "r", encoding='utf-8') as file:
+        with open(f'QCM\\{selectedQCM}.txt', "r", encoding='utf-8') as file:
             # Read all lines
             lines = file.readlines()
 
