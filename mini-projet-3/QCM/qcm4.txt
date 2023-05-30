@@ -1,0 +1,29 @@
+q: Quelle est la méthode utilisée pour lire une ligne à partir d'un fichier en Python ?
+1) read()
+2) readline()
+3) readlines()
+4) get_line()
+Correct: 2
+
+q: Comment effectue-t-on une comparaison entre deux valeurs en Python ?
+1) ==
+2) =
+3) !=
+4) <>
+Correct: 1
+
+q: Quelle est la méthode utilisée pour inverser l'ordre des éléments dans une liste en Python ?
+1) reverse()
+2) flip()
+3) invert()
+4) backflip()
+Correct: 1
+
+q: Comment obtient-on la valeur maximale d'une liste en Python ?
+1) max_value()
+2) max()
+3) maximum()
+4) get_max()
+Correct: 2
+
+Quiz duration: 60

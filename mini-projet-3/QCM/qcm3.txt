@@ -1,0 +1,29 @@
+q: Quelle est la méthode utilisée pour ouvrir un fichier en mode écriture ("write mode") en Python ?
+1) open("filename.txt", "r")
+2) open("filename.txt", "w")
+3) open("filename.txt", "a")
+4) open("filename.txt", "x")
+Correct: 2
+
+q: Comment convertit-on un nombre entier ou décimal en chaîne de caractères en Python ?
+1) str()
+2) convert_to_string()
+3) tostring()
+4) decimal_to_string()
+Correct: 1
+
+q: Quelle est la méthode utilisée pour trier une liste en Python ?
+1) sort()
+2) order()
+3) arrange()
+4) organize()
+Correct: 1
+
+q: Comment affiche-t-on le type d'une variable en Python ?
+1) typeof(variable)
+2) type(variable)
+3) variable.type()
+4) variable_typeof()
+Correct: 2
+
+Quiz duration: 60

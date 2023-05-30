@@ -1,0 +1,29 @@
+q: Quelle est la méthode utilisée pour supprimer un élément d'une liste en Python ?
+1) delete()
+2) remove()
+3) erase()
+4) discard()
+Correct: 2
+
+q: Comment effectue-t-on une boucle "for" en Python ?
+1) for (int i = 0; i < 5; i++)
+2) for i in range(5)
+3) for i = 0 to 4
+4) for (i = 0; i < 5; i++)
+Correct: 2
+
+q: Quelle est la fonction utilisée pour obtenir la longueur d'une chaîne de caractères en Python ?
+1) len()
+2) length()
+3) size()
+4) count()
+Correct: 1
+
+q: Comment convertit-on une chaîne de caractères en majuscules en Python ?
+1) str.upper()
+2) str.lower()
+3) str.capitalize()
+4) str.casefold()
+Correct: 1
+
+Quiz duration: 60

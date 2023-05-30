@@ -1,0 +1,29 @@
+q: Quelle est l'extension d'un fichier Python ?
+1) .rat
+2) .py
+3) .python
+4) .bat
+Correct: 2
+
+q: Comment définit-on une fonction ?
+1) function
+2) func
+3) def
+4) class
+Correct: 3
+
+q: Quelle est la méthode utilisée pour ajouter un élément à une liste en Python ?
+1) append()
+2) extend()
+3) add()
+4) insert()
+Correct: 1
+
+q: Comment déclare-t-on une variable en Python ?
+1) var x = 5
+2) x = 5
+3) int x = 5
+4) declare x = 5
+Correct: 2
+
+Quiz duration: 10

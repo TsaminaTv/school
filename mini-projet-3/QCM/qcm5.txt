@@ -1,0 +1,29 @@
+q: Quelle est la méthode utilisée pour fermer un fichier en Python ?
+1) close()
+2) shutdown()
+3) end()
+4) exit()
+Correct: 1
+
+q: Comment effectue-t-on une boucle "while" en Python ?
+1) while loop:
+2) while (condition):
+3) for i in range():
+4) do while loop:
+Correct: 2
+
+q: Quelle est la fonction utilisée pour convertir un nombre en chaîne de caractères en Python ?
+1) str()
+2) convert()
+3) tostring()
+4) stringify()
+Correct: 1
+
+q: Comment convertit-on un nombre en entier en Python ?
+1) int_part()
+2) round()
+3) integer()
+4) int()
+Correct: 4
+
+Quiz duration: 60

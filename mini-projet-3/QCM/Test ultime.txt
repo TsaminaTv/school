@@ -1,0 +1,11 @@
+q: asd?
+1) y
+2) n
+Correct: 1
+
+q: bsd?
+1) y
+2) b
+Correct: 2
+
+Quiz duration: 60
