@@ -155,7 +155,7 @@ class GestionExamens:
                 break
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
                 for account in accounts:
@@ -169,7 +169,7 @@ class GestionExamens:
                         self.mainMenu()
 
             # If the username doesn't exist, save the new account
-            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
                 file.write(f"{whoRegister}|{username}:{password}\n")
 
             # Print a success message and clear the screen
@@ -200,7 +200,7 @@ class GestionExamens:
 
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="mini-projet-3\\Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
         except FileNotFoundError:
@@ -267,9 +267,9 @@ class GestionExamens:
         try:
             # Create the quiz file if it doesn't exist
             if not os.path.exists(f"QCM\\{quizName}.txt"):
-                open(f"QCM\\{quizName}.txt", "w").close()
+                open(f"mini-projet-3\\QCM\\{quizName}.txt", "w").close()
             # Open the quiz file and write the questions and answers that were entered before
-            with open(file=f"QCM\\{quizName}.txt", mode="a", encoding='utf-8') as file:
+            with open(file=f"mini-projet-3\\QCM\\{quizName}.txt", mode="a", encoding='utf-8') as file:
                 for i in range(len(quizQuestions)):
                     file.write(f"{quizQuestions[i]}\n")
             # Print a success message and clear the screen clear the screen and redirect to teacher mode
@@ -442,7 +442,7 @@ class GestionExamens:
 
         # ------ READ QUIZ FILE ------
         # Open selected quiz
-        with open(f'QCM\{selectedQCM}.txt', "r", encoding='utf-8') as file:
+        with open(f'mini-projet-3\\QCM\{selectedQCM}.txt', "r", encoding='utf-8') as file:
             # Read all lines
             lines = file.readlines()
 
