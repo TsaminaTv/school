@@ -138,7 +138,7 @@ class GestionExamens:
         '''
         while True:
             # Demander un nom d'utilisateur et un mot de passe
-            username = input(backgroundColor + "Username: " + defaultColor).lower()
+            username = input(backgroundColor + "Nom : " + defaultColor).lower()
             password = input(backgroundColor + "mot de passe: " + defaultColor).lower()
             confirmPassword = input(backgroundColor + "Confirmez votre MDP: " + defaultColor).lower()
             #Vérification si le MDP et le nom d'utilisateur font au moins 2 caractères et si les MDP correspondent
@@ -203,13 +203,13 @@ class GestionExamens:
             print(backgroundColor + "Compte introuvable")
 
         for account in accounts:
-            # Split the account into role and username:password
+            # séparation du compte dans 2 rôles séparé nom d'utilisateur et mdp 
             account = account.strip().split("|")
-            # Set the role to the first element of the account
+            # définition du rôle sur le premier éléments
             role = account[0]
-            # Split the username:password into username and password
+            # séparation du compte dans 2 rôles séparé nom d'utilisateur et mdp 
             account = account[1].split(":")
-            # Check if the username and password match
+            # Check si le nom et le MDP correspondent
             if self.username == account[0] and self.password == account[1]:
                 return role
 
@@ -218,7 +218,7 @@ class GestionExamens:
         '''
         Print the teacher mode menu
         '''
-        # Clear the screen
+        # effacer l'ecran
         print(Style.CLEAR, end='')
         print(correctColor + "Login successful" + backgroundColor)
         print(backgroundColor + "*****************************")
@@ -238,9 +238,9 @@ class GestionExamens:
         '''
         Create a new quiz
         '''
-        # Clear the screen
+        # effacer l'écran
         print(Style.CLEAR, end='')
-        # Ask for the quiz name, number of questions, number of answers and quiz duration
+        # Demander le nom du quiz, nombre de question, nombre de réponse et la durée
         quizQuestions = []
         quizName = input(backgroundColor + "Veuillez entrer le nom du QCM : " + defaultColor)
         quizQuestionsNumber = input(backgroundColor + "Veuillez entrer le nombre de questions du QCM : " + defaultColor)
@@ -248,38 +248,38 @@ class GestionExamens:
         quizDuration = input(backgroundColor + "Veuillez entrer la durée du QCM (en seconds) : " + defaultColor)
 
         for i in range(int(quizQuestionsNumber)):
-            # Ask for the question and the answers
+            # Demande des questions et réponses
             question = input(backgroundColor + f"Veuillez entrer la question {i+1} : " + defaultColor)
             quizQuestions.append(f"q: {question}")
             for j in range(int(quizQuestionsNumber)):
                 answer = input(backgroundColor + f"Veuillez entrer la réponse {j+1} : " + defaultColor)
                 quizQuestions.append(f"{j + 1}) {answer}")
-                # If it's the last answer, ask for the correct answer because thats how the format is
+                # Si c'est la dernière question, demander la réponse correct
                 if j == int(quizAnswersNumber) - 1:
                     quizCorrectAnswer = input(backgroundColor + "Veuillez entrer le numéro de la bonne réponse : " + defaultColor)
                     quizQuestions.append(f"Correct: {quizCorrectAnswer}\n")
-        quizQuestions.append(f"Quiz duration: {quizDuration}")
+        quizQuestions.append(f"Durée du quiz: {quizDuration}")
 
         try:
-            # Create the quiz file if it doesn't exist
+            # Création du fichier de quiz s'il n'existe pas
             if not os.path.exists(f"QCM\\{quizName}.txt"):
                 open(f"QCM\\{quizName}.txt", "w").close()
-            # Open the quiz file and write the questions and answers that were entered before
+            # ouverture du fichier du quiz et y écrire les questions et réponses entrer avant
             with open(file=f"QCM\\{quizName}.txt", mode="a", encoding='utf-8') as file:
                 for i in range(len(quizQuestions)):
                     file.write(f"{quizQuestions[i]}\n")
-            # Print a success message and clear the screen clear the screen and redirect to teacher mode
-            print(correctColor + "Quiz created successfully!" + backgroundColor)
+            # Afficher un message de succès, effacer l'écran et aller en mode prof 
+            print(correctColor + "Le quizz a bien été créé!" + backgroundColor)
             time.sleep(1)
             print(Style.CLEAR, end="")
             self.teacherMode()
         except FileNotFoundError:
-            print(errorColor + "No quizzes file found" + backgroundColor)
+            print(errorColor + "Fichier de quizz introuvable" + backgroundColor)
 
 
     def createStudentAccount(self):
         '''
-        Create a new student account as a teacher
+        Creation d'un compte eleves en tant que prof
         '''
         print(Style.CLEAR, end='')
         self.register("ELEVE", "PROF")
@@ -287,16 +287,16 @@ class GestionExamens:
     
     def showStudentResults(self):
         '''
-        Show the results of a student
+         Afficher les résultat d'un étudiant
         '''
         print(Style.CLEAR, end='')
 
-        # ------ SELECT STUDENT FOLDER ------
-        # Create a dictionary for the student folders
+        # ------ Selection d'un dossier élève ------
+        # creation d'un dictionnaire pour les eleves
         studentFolders = {}
         count = 1
 
-        # Check if a folder that ends with _QCM exists, if no folders that end with _QCM exist, print an error message and redirect to the teacher mode
+        # Check si un fichier termine avec _QCM si non, afficher un message d'erreur et aller en mode prof
         if len([folder for folder in os.listdir() if folder.endswith("_QCM")]) == 0:
             print(errorColor + "No student folders found" + backgroundColor)
             time.sleep(1.5)
@@ -305,29 +305,30 @@ class GestionExamens:
         for folder in os.listdir():
             if folder.endswith("_QCM"):
                 print(f"{count}) {folder}")
-                # Add the folder to the students dictionary
+                # Ajouter le dossier au dictionnaire eleve
                 studentFolders[str(len(studentFolders) + 1)] = folder
                 count += 1
 
+
         while True:
             try:
-                # Ask user to choose a quiz
+                # Demande de choix d'un quizz
                 studentFolderNumber = int(input(backgroundColor + f"Veuillez entrer un numéro valide ({', '.join(studentFolders.keys())}) : " + defaultColor))
-                # Convert to string
+                # conversion en string
                 studentFolderNumber = str(studentFolderNumber)
-                # Check if choice is valid
+                # Check si le choix est valide
                 if studentFolderNumber in studentFolders.keys():
-                    print("You selected", studentFolders[studentFolderNumber])
-                    # Set selected quiz
+                    print("Vous avez choisis", studentFolders[studentFolderNumber])
+                    # Set selected quiz 
                     selectedStudentFolder = studentFolders[studentFolderNumber]
                     break
                 else:
-                    print(errorColor + "Invalid choice" + backgroundColor)
+                    print(errorColor + "Choix invalide" + backgroundColor)
             except ValueError:
-                print(errorColor + "Invalid choice" + backgroundColor)
+                print(errorColor + "Choix invalide" + backgroundColor)
+        # ------ Selection d'un fichier eleve ------
 
-        # ------ SELECT STUDENT FILE ------
-        # Create a dictionary for the student files
+        # création d'un dictionnaire pour les fichiers des élèves
         studentFiles = {}
         count2 = 1
         for file in os.listdir(selectedStudentFolder):
@@ -337,42 +338,42 @@ class GestionExamens:
 
         while True:
             try:
-                # Ask user to choose a quiz
+                # Demande de choix d'un quizz
                 studentFileNumber = int(input(backgroundColor + f"Veuillez entrer un numéro valide ({', '.join(studentFiles.keys())}) : " + defaultColor))
-                # Convert to string
+                # conversion en string
                 studentFileNumber = str(studentFileNumber)
-                # Check if choice is valid
+                # Check si le choix est valide
                 if studentFileNumber in studentFiles.keys():
-                    print("You selected", studentFiles[studentFileNumber])
+                    print("Vous avez choisis", studentFiles[studentFileNumber])
                     # Set selected quiz
                     selectedStudentFile = studentFiles[studentFileNumber]
                     break
                 else:
-                    print(errorColor + "Invalid choice" + backgroundColor)
+                    print(errorColor + "Choix invalide" + backgroundColor)
             except ValueError:
-                print(errorColor + "Invalid choice" + backgroundColor)
+                print(errorColor + "Choix invalide" + backgroundColor)
 
-        # ------ SHOW STUDENT RESULTS ------
-        # Clear the screen
+        # ------ Affichage des résultats des élèves ------
+        # effacer l'ecran
         print(Style.CLEAR, end='')
         
-        # Open the student file and print the results
+        # Ouvrir le fichier étudiant et afficher le résultat
         with open(f"{selectedStudentFolder}\\{selectedStudentFile}", "r", encoding='utf-8') as file:
             print(file.read())
 
         self.ActionForm({
-            '1': ("Do you want to continue?", lambda: self.showStudentResults()),
-            '2': ("Main Menu", lambda: (print(Style.CLEAR, end=''), self.mainMenu())),
+            '1': ("Voulez vous continuer?", lambda: self.showStudentResults()),
+            '2': ("Menu Principal", lambda: (print(Style.CLEAR, end=''), self.mainMenu())),
         })
 
     
     def studentMode(self):
         '''
-        Print the student mode menu
+        afficher le menu élève
         '''
-        # Clear the screen
+        # effacer l'écran
         print(Style.CLEAR, end='')
-        print(correctColor + "Login successful" + backgroundColor)
+        print(correctColor + "Connexion réussie" + backgroundColor)
         print(backgroundColor + "*****************************")
         print(Style.BOLD + headerColor + "MODE ELEVE" + Style.END + backgroundColor)
         print("*****************************")
@@ -385,29 +386,29 @@ class GestionExamens:
 
     def takeQuiz(self):
         '''
-        Take a quiz
+        faire un quiz
         '''
-        # Clear the screen
+        # effacer l'écran
         print(Style.CLEAR, end='')
 
-        # Create empty lists for questions, answers and correct answers
+        # creation de liste vide pour les question réponse et réponses correcte
         questions = []
         answers = []
         correct_answers = []
-        qcmFiles = {}  # Create a dictionary for the quizzes that exist in a folder
+        qcmFiles = {}  # Creation d'un dictionnaire pour les quiz qui existent dans un dossier  
         quizDuration = 0
         grade = 0
 
-        # Create folder for student
+        # création d'un fichier pour un étudiant
         self.folderName = f"{self.username}_QCM"
-        # Check if folder exists
+        # Check si le fichier existe déjà 
         if not os.path.exists(self.folderName):
             os.mkdir(self.folderName)
 
-        # Check if there are any quizzes
+        # Check s'il y'a des quiz
         print(backgroundColor + "Liste des QCM disponibles : " + defaultColor)
 
-        # Check if the user has already done the quiz, if yes, remove it from their quizzes list
+        # Si l'élève a déjà fait le quiz, retirer le quiz de la liste
         count = 1
         for i, file in enumerate(os.listdir("QCM")):
             if f"{self.username}_{file}" not in os.listdir(self.folderName):
@@ -417,62 +418,62 @@ class GestionExamens:
 
         while True:
             try:
-                # Ask user to choose a quiz
+                # demande de choix d'un quiz
                 qcmNumber = int(input(backgroundColor + f"Veuillez entrer un numéro valide ({', '.join(qcmFiles.keys())}) : " + defaultColor))
-                # Convert to string
+                # conversion en string
                 qcmNumber = str(qcmNumber)
-                # Check if choice is valid
+                # Check si le choix est valide
                 if qcmNumber in qcmFiles.keys():
-                    print(correctColor + "You selected", qcmFiles[qcmNumber] + defaultColor)
+                    print(correctColor + "Vous avez selectionné", qcmFiles[qcmNumber] + defaultColor)
                     # Set selected quiz
                     selectedQCM = qcmFiles[qcmNumber]
                     break
                 else:
-                    print(errorColor + "Invalid choice" + backgroundColor)
+                    print(errorColor + "Choix invalide" + backgroundColor)
             except ValueError:
-                print(errorColor + "Invalid choice" + backgroundColor)
+                print(errorColor + "Choix invalide" + backgroundColor)
                 
-        # Clear the screen
+        # effacer l'écran
         time.sleep(1)
         print(Style.CLEAR, end='')
 
-        # ------ READ QUIZ FILE ------
-        # Open selected quiz
+        # ------ Lire le fichier quiz ------
+        # ouvrir le quiz selectionner
         with open(f'QCM\\{selectedQCM}.txt', "r", encoding='utf-8') as file:
-            # Read all lines
+            # lire toutes les lignes
             lines = file.readlines()
 
         i = 0
         while i < len(lines):
-            # Check if line starts with q:
+            # check si la ligne commence avec q:
             if lines[i].startswith("q:"):
-                # Get question and add it to questions list
+                # Ajouter les questions dans la liste
                 question = lines[i].replace("q:", "").strip()
                 questions.append(question)
                 i += 1
                 answer_choices = []
 
-                # Get answers and add them to answers list if the line doesn't start with Correct:
+                # Obtenir les réponses et les ajouter a la liste des réponses, si la ligne ne commence pas avec correct 
                 while not lines[i].startswith("Correct:"):
                     answer = lines[i].strip()
                     answer_choices.append(answer)
                     i += 1
                 answers.append(answer_choices)
-                # Extract correct answer without "Correct:" and add it to correct_answers list
+                # Extract correct answer without "Correct:" and add it to correct_answers list 
                 correct_answer = lines[i].replace("Correct:", "").strip()
-                # Convert to int and add to correct_answers list
+                # conversion en int et ajout dans correct_answers list
                 correct_answers.append(int(correct_answer))
 
-            # Check if line starts with "Quiz duration:"
-            if lines[i].startswith("Quiz duration:"):
-                # Extract the duration value
-                quizDuration = int(lines[i].replace("Quiz duration:", "").strip())
+            # Check si la ligne commence avec "durée du quiz:" 
+            if lines[i].startswith("durée du quiz:"):
+                # extraire la durée 
+                quizDuration = int(lines[i].replace("durée du quiz", "").strip())
             i += 1
 
-        # ------ START TIMER, SHOW QUIZ QUESTIONS AND WRITE ANSWERS TO STUDENT FILE ------
-        # Start the countdown
+        # ------ début du timer, afficher les questions ------ 
+        # début du décompte
         self.CountDown(quizDuration)
-        # Start the timer
+        # début du timer
         stopThread = False
         timerThread = threading.Thread(target=self.Timer, args=(quizDuration,))
         timerThread.start()
@@ -481,30 +482,30 @@ class GestionExamens:
             for question in range(len(questions)):
                 # Print question
                 print(questionColor + f"Question: {questions[question]}" + questionColor)
-                # Print answers
+                # Print réponse
                 print("\n".join(answers[question]))
-                # Ask user the question answer with try except
+                # demander à l'utilisateur la question et la réponse avec try expect
                 while True:
                     try:
-                        userInput = int(input(backgroundColor + "Enter your answer: " + defaultColor))
+                        userInput = int(input(backgroundColor + "Entrez votre réponse " + defaultColor))
                         break
                     except ValueError:
-                        print(errorColor + "Invalid choice" + backgroundColor)
+                        print(errorColor + "Choix invalide" + backgroundColor)
 
-                # Check if answer is correct
+                # Si la réponse est correct
                 if userInput == correct_answers[question]:
-                    # If correct, add 1 to grade
+                    # si correct ajouter 1 au grade
                     print(correctColor + "Correct!\n" + backgroundColor)
                     grade += 1
                 else:
-                    # If incorrect, print correct answer
+                    # Si incorrecte ; afficher incorrecte
                     print(errorColor + "Incorrect!\n" + backgroundColor)
 
-                # If file doesn't exist, create it
+                # Si le fichier n'existe pas, le créer
                 if not os.path.exists(f"{self.folderName}\\{self.username}_{selectedQCM}.txt"):
                     open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "w").close()
 
-                # Open file and write the questions, answers, correct answer and user answer
+                # ouvrir le fichier, écrire les question, réponses et les réponse de l'utilisateur
                 with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
                     file.write(f"Question: {questions[question]}\n")
                     file.write("Answers:\n")
@@ -515,31 +516,31 @@ class GestionExamens:
                 
                 if myTimer <= 0:
                     break
-            # If done with all questions stop the timer thread and break
+            #Si toutes les questions sont faites, arreter le timer 
             break
 
-        # End of quiz, grade the student
+        # Fin du quiz, note de l'élève
         with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
             file.write(f"Student grade: {grade}/{len(questions)}\n")
             file.write("--------------------------------------------------\n")
         
-        # Clear the screen
+        # effacer l'écran
         time.sleep(1)
         print(Style.CLEAR, end='')
         
         # Print results
-        print(correctColor + "Quiz completed!" + Style.END)
+        print(correctColor + "Quiz Fini !" + Style.END)
         if grade == len(questions):
-            print(correctColor + f"Congratulations! You aced the test! ({grade}/{len(questions)})")
+            print(correctColor + f"Bravo ! vous avez réussis le teste ({grade}/{len(questions)})") 
         elif grade >= len(questions) / 2:
-            print(correctColor + f"Good job! You got {grade}/{len(questions)}" + backgroundColor)
+            print(correctColor + f"Good job! votre note : {grade}/{len(questions)}" + backgroundColor)
         else:
-            print(errorColor + f"SOOO BAAAAAD HAHAHA. You got {grade}/{len(questions)}" + Style.END)
+            print(errorColor + f"Dommage,une prochaine fois. Votre note {grade}/{len(questions)}" + Style.END)
         time.sleep(2)
         self.studentMode()
 
 def main():
-    print(Style.CLEAR, end='') # Clear the screen
+    print(Style.CLEAR, end='') # effacer l'écran
     user = GestionExamens()
     user.mainMenu()
 
