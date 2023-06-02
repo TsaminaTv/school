@@ -151,7 +151,7 @@ class GestionExamens:
                 break
         try:
             # ouvrir le fichier de compte
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 #On lit les comptes
                 accounts = file.readlines()
                 for account in accounts:
@@ -165,7 +165,7 @@ class GestionExamens:
                         self.mainMenu()
 
             #Si le nom d'utilisateur n'existe pas, sauvegarder le compte
-            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="a", encoding='utf-8') as file:
                 file.write(f"{whoRegister}|{username}:{password}\n")
 
             #Imprimer un message de succès et nettoyer l'écran
@@ -188,15 +188,15 @@ class GestionExamens:
         Connexion a un compte existant
         '''
         #Demande du nom d'utilisateur et MDP
-        username = input(backgroundColor + "Username: " + defaultColor).lower()
-        password = input(backgroundColor + "Password: " + defaultColor).lower()
+        username = input(backgroundColor + "Nom: " + defaultColor).lower()
+        password = input(backgroundColor + "Mot de Passe: " + defaultColor).lower()
         #définition du nom et du MDP en variable
         self.username = username
         self.password = password
 
         try:
             #Ouverture du fichier de compte
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 #On lit tous les comptes
                 accounts = file.readlines()
         except FileNotFoundError:
