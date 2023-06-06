@@ -124,7 +124,7 @@ class GestionExamens:
                     print(Style.CLEAR, end="")
                     self.mainMenu()
                 break
-            elif answer == "n":
+            elif answer == "non":
                 #Si l'utilisateur n'a pas de compte, en créer un 
                 self.register(user, user)
                 break
@@ -236,7 +236,7 @@ class GestionExamens:
 
     def createQuiz(self):
         '''
-        Create a new quiz
+        Création d'un nouveau quizz
         '''
         # effacer l'écran
         print(Style.CLEAR, end='')

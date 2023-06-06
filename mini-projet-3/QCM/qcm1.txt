@@ -26,4 +26,4 @@ q: Comment déclare-t-on une variable en Python ?
 4) declare x = 5
 Correct: 2
 
-Quiz duration: 10
+Quiz duration: 1800

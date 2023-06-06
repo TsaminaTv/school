@@ -26,4 +26,4 @@ q: Comment obtient-on la valeur maximale d'une liste en Python ?
 4) get_max()
 Correct: 2
 
-Quiz duration: 60
+Quiz duration: 1800

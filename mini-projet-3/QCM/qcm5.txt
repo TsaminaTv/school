@@ -26,4 +26,4 @@ q: Comment convertit-on un nombre en entier en Python ?
 4) int()
 Correct: 4
 
-Quiz duration: 60
+Quiz duration: 1800

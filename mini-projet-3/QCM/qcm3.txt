@@ -26,4 +26,4 @@ q: Comment affiche-t-on le type d'une variable en Python ?
 4) variable_typeof()
 Correct: 2
 
-Quiz duration: 60
+Quiz duration: 1800

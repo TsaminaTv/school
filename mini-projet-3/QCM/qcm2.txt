@@ -26,4 +26,4 @@ q: Comment convertit-on une chaîne de caractères en majuscules en Python ?
 4) str.casefold()
 Correct: 1
 
-Quiz duration: 60
+Quiz duration: 1800
