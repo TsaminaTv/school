@@ -51,12 +51,11 @@ class GestionExamens:
         global myTimer
         myTimer = timerDuration
 
-        # le timer commence
+        # Start the timer
         for i in range(myTimer):
             myTimer -= 1
             time.sleep(1)
-
-        print(errorColor + "\nTemps écoulé !  Entrez votre dernière réponse (si la réponse est déjà écrite, appuyez sur entrer): " + defaultColor)
+    print(errorColor + "\nTemps écoulé !  Entrez votre dernière réponse (si la réponse est déjà écrite, appuyez sur entrer): " + defaultColor)
 
     
     def CountDown(self, duration):
