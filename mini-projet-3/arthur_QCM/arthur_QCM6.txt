@@ -1,0 +1,38 @@
+Question: Quelle est l'extension python ?
+Answers:
+1) Docx
+2) py
+3) js
+4) java
+Correct Answer: 2
+User Answer: 2
+
+Question: Qu'est ce que le python
+Answers:
+1) un langage de programmation
+2) un serpent
+3) une langue
+4) je sais pa
+Correct Answer: 1
+User Answer: 1
+
+Question: input ?
+Answers:
+1) demande utilisateur
+2) je sais pa
+3) rien
+4) une requete serveur
+Correct Answer: 1
+User Answer: 2
+
+Question: un écran ?
+Answers:
+1) Oui
+2) non
+3) j'en ai un
+4) non
+Correct Answer: 3
+User Answer: 3
+
+Student grade: 3/4
+--------------------------------------------------

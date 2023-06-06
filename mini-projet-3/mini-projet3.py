@@ -297,7 +297,7 @@ class GestionExamens:
 
         # Check si un fichier termine avec _QCM si non, afficher un message d'erreur et aller en mode prof
         if len([folder for folder in os.listdir() if folder.endswith("_QCM")]) == 0:
-            print(errorColor + "No student folders found" + backgroundColor)
+            print(errorColor + "Fichier introuvable" + backgroundColor)
             time.sleep(1.5)
             print(Style.CLEAR, end="")
             self.teacherMode()
@@ -378,7 +378,7 @@ class GestionExamens:
         print("*****************************")
         self.ActionForm({
             '1': ('Passer un QCM', lambda: self.takeQuiz()),
-            "2": ("Main Menu", lambda: (print(Style.CLEAR, end=''), self.mainMenu())),
+            "2": ("Menu principal", lambda: (print(Style.CLEAR, end=''), self.mainMenu())),
             'q': ('Quitter', lambda: self.Quit())
             })
 
@@ -494,11 +494,7 @@ class GestionExamens:
                 # Si la réponse est correct
                 if userInput == correct_answers[question]:
                     # si correct ajouter 1 au grade
-                    print(correctColor + "Correct!\n" + backgroundColor)
                     grade += 1
-                else:
-                    # Si incorrecte ; afficher incorrecte
-                    print(errorColor + "Incorrect!\n" + backgroundColor)
 
                 # Si le fichier n'existe pas, le créer
                 if not os.path.exists(f"{self.folderName}\\{self.username}_{selectedQCM}.txt"):
@@ -520,7 +516,7 @@ class GestionExamens:
 
         # Fin du quiz, note de l'élève
         with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
-            file.write(f"Student grade: {grade}/{len(questions)}\n")
+            file.write(f"Note de l'élève: {grade}/{len(questions)}\n")
             file.write("--------------------------------------------------\n")
         
         # effacer l'écran
