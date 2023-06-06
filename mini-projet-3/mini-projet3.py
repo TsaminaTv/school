@@ -464,9 +464,9 @@ class GestionExamens:
                 correct_answers.append(int(correct_answer))
 
             # Check si la ligne commence avec "durée du quiz:" 
-            if lines[i].startswith("durée du quiz:"):
+            if lines[i].startswith("Quiz duration:"):
                 # extraire la durée 
-                quizDuration = int(lines[i].replace("durée du quiz", "").strip())
+                quizDuration = int(lines[i].replace("Quiz duration:", "").strip())
             i += 1
 
         # ------ début du timer, afficher les questions ------ 
