@@ -257,7 +257,7 @@ class GestionExamens:
                 if j == int(quizAnswersNumber) - 1:
                     quizCorrectAnswer = input(backgroundColor + "Veuillez entrer le numéro de la bonne réponse : " + defaultColor)
                     quizQuestions.append(f"Correct: {quizCorrectAnswer}\n")
-        quizQuestions.append(f"Durée du quiz: {quizDuration}")
+        quizQuestions.append(f"Quiz duration: {quizDuration}")
 
         try:
             # Création du fichier de quiz s'il n'existe pas

@@ -1,0 +1,29 @@
+q: Quelle est l'extension python ? 
+1) Docx
+2) py
+3) js
+4) java
+Correct: 2
+
+q: Qu'est ce que le python
+1) un langage de programmation 
+2) un serpent
+3) une langue
+4) je sais pa 
+Correct: 1
+
+q: input ? 
+1) demande utilisateur
+2) je sais pa 
+3) rien 
+4) une requete serveur
+Correct: 1
+
+q: un écran ? 
+1) Oui 
+2) non 
+3) j'en ai un 
+4) non 
+Correct: 3
+
+Quiz duration: 1800
