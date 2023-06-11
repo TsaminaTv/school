@@ -1,6 +1,4 @@
 PROF|prof:prof
 ELEVE|eleve:eleve
-ELEVE|asd:asd
 ELEVE|arthur:arthur
-PROF|admin:admin
 PROF|zouin:1234
